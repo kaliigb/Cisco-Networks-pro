@@ -1,0 +1,95 @@
+!
+version 12.2
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+no service password-encryption
+!
+hostname Router
+!
+!
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface FastEthernet0/0
+ ip address 40.0.0.2 255.0.0.0
+!
+interface FastEthernet1/0
+ ip address 92.0.0.1 255.0.0.0
+!
+interface FastEthernet2/0
+ ip address 60.0.0.1 255.0.0.0
+!
+interface FastEthernet3/0
+ no ip address
+ shutdown
+!
+interface GigabitEthernet4/0
+ no ip address
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet4/0.100
+ encapsulation dot1Q 100
+ ip address 192.1.5.1 255.255.255.0
+!
+interface GigabitEthernet4/0.200
+ encapsulation dot1Q 200
+ ip address 199.55.1.1 255.255.255.0
+!
+interface FastEthernet5/0
+ ip address 50.0.0.1 255.0.0.0
+!
+router eigrp 999
+ network 199.55.1.0
+ network 192.1.5.0
+ network 92.0.0.0
+ network 60.0.0.0
+ network 50.0.0.0
+ network 40.0.0.0
+ auto-summary
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+!
+line aux 0
+!
+line vty 0 4
+ login
+!
+!
+!
+end
+
